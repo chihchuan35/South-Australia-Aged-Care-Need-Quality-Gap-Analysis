@@ -107,10 +107,6 @@ Ownership type should be used as a segmentation lens, particularly when reviewin
 - Star schema modelling
 - AI-assisted modelling workflow using MCP
 
-## Dashboard Preview
-
-![Dashboard Preview](docs/images/dashboard-preview.png)
-
 ## Project Files
 
 - `data/raw/` - raw source files from GEN Aged Care Data
