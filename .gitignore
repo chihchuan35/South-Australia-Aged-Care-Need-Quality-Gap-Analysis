@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+~$*.xlsx
+
+# Power BI temporary/cache files
+*.pbit.cache
+*.pbix.cache
+
+# Python cache, if used later
+__pycache__/
+*.pyc
+
+# Local environment files
+.env
