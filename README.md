@@ -16,9 +16,7 @@ The project focuses on five key questions:
 
 ## Data Source
 
-The data used in this project was sourced from **GEN Aged Care Data**.
-
-The datasets cover aged-care users, care needs, provider information, star ratings, staffing minutes, ownership type and care-risk indicators.
+This project combines two official sources: AIHW GEN Aged Care Data (usage, care needs, admissions, separations, providers, home-care packages by region) and the Star Ratings Quarterly Data Extract – May 2026 (service star ratings, sub-ratings, care-minute targets/actuals, and quality/care-risk indicators). The two are reported at different granularities and were bridged on the Aged Care Planning Region (ACPR, 2018).
 
 ## Data Workflow
 
@@ -45,6 +43,18 @@ The model supports analysis across regions, provider types, care needs, service 
 
 AI-assisted development using MCP was used to accelerate the creation of the star schema and DAX measures. The final model logic, relationships and measures were reviewed and adjusted manually.
 
+## Methodology / Data Modelling Notes
+
+**Geographic bridge.** The three data worlds (usage/demand, home-care-by-region, and star ratings) share no common service identifier, so the **Aged Care Planning Region (ACPR, 2018)** is used as the single geographic key across all sources and as the grain of `DimRegion` (11 SA ACPRs).
+
+**Join strategy varies by source.** ACPR _names are not unique across states_, and the ACPR _code is stored inconsistently_ (text in the usage data, numeric in the home-care files). Joins therefore use **ACPR name + a `STATE = 'SA'` filter** for the usage/CURF facts, and the **numeric ACPR code** for the home-care facts, to avoid cross-state mismatches.
+
+**SA scoping in the data layer.** South Australia is filtered in SQL (Gold layer) via an inner join to `DimRegion`, keeping the Silver layer generic and reusable.
+
+**Modelling choices.** MMM (remoteness) is treated as a service-level attribute (one ACPR spans several MMM values). Acuity (ANACC) exists only at state level, so it is used as SA-wide background context rather than a regional axis. A **disconnected `DimQM` table + a `SWITCH` measure** power the quality-measure profile chart (overcoming the multi-measure visual limitation), and `FactAcuity` is intentionally left unrelated (state grain only). The priority quadrant uses **two transparent axes (need depth × quality) rather than a composite index**, so the prioritisation logic stays fully explainable.
+
+**Measure validation.** Distribution sanity-checks surfaced a DAX issue where `BLANK()` is treated as 0 in comparisons, which inflated "% below 3 stars" and "% meeting care-minute target" by counting unrated / no-data services. Both measures were corrected with explicit `NOT ISBLANK()` guards.
+
 ## Key Findings
 
 ### Demand
@@ -69,7 +79,7 @@ Government providers record the highest average rating, while Private for Profit
 
 Staffing levels are broadly compliant across South Australia. On average, total care minutes exceed the target by 9.5 minutes per resident per day, and 82.7% of services meet their total care-minute target.
 
-However, staffing performance differs by ownership type. Government providers have the largest staffing surplus and highest target attainment rate, while Private for Profit providers operate much closer to the required target.
+However, staffing performance differs sharply by ownership type. Government providers run the largest surplus and meet the total care-minute target in 95.7% of services, whereas Private for Profit providers have the lowest attainment at 76.6% — running closest to, and least often above, the minimum
 
 At the regional level, staffing does not fully explain quality outcomes. Care-risk indicators such as falls, polypharmacy, restrictive practices and antipsychotic use provide additional insight into quality risk.
 
@@ -93,7 +103,7 @@ Treat Riverland as a targeted regional-equity priority due to its low average ra
 
 Quality improvement should focus not only on staffing compliance, but also on care-practice risk indicators such as falls, polypharmacy, restrictive practices and antipsychotic use.
 
-Ownership type should be used as a segmentation lens, particularly when reviewing Private for Profit providers in priority regions.
+Use ownership type as a segmentation lens: Private for Profit services warrant the closest review in priority regions, as they show the lowest care-minute target attainment (76.6%, vs 95.7% for Government).
 
 ## Tools Used
 
@@ -116,6 +126,11 @@ Ownership type should be used as a segmentation lens, particularly when reviewin
 
 ## Limitations
 
-This project is descriptive and exploratory.
+This project is descriptive and exploratory. It identifies patterns and priority areas but does not claim causality between staffing, ownership type, care-risk indicators and star ratings.
 
-The analysis identifies patterns and priority areas, but does not claim direct causality between staffing, ownership type, care-risk indicators and star ratings.
+- **Cross-sectional**: the Star Ratings data is a single May 2026 snapshot, so no trends over time are inferred.
+- **Ecological (region-level)**: regional patterns should not be read as conclusions about individual services.
+- **Proxy for need depth**: regional need depth is proxied by the home-care Level 3–4 share, as service-level acuity (ANACC) is only available at state level.
+- **Coverage**: rating and quality analysis covers the 209 rated services (~90%); 24 unrated services are excluded from quality measures and reported separately.
+- **Unweighted averages**: ratings and quality measures are service-level averages (each service weighted equally), not population-weighted.
+- **Staffing is necessary but not sufficient**: care minutes are largely met and, at the regional level, do not strongly predict ratings.
