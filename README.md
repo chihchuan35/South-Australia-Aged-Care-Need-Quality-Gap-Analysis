@@ -16,32 +16,40 @@ The project focuses on five key questions:
 
 ## Data Source
 
-This project combines two official sources: AIHW GEN Aged Care Data (usage, care needs, admissions, separations, providers, home-care packages by region) and the Star Ratings Quarterly Data Extract – May 2026 (service star ratings, sub-ratings, care-minute targets/actuals, and quality/care-risk indicators). The two are reported at different granularities and were bridged on the Aged Care Planning Region (ACPR, 2018).
+This project combines two official sources:
+
+- **AIHW GEN Aged Care Data** – aged-care usage, care needs, admissions, separations, providers, and home-care packages by region.
+- **Star Ratings Quarterly Data Extract – May 2026** – service star ratings, sub-ratings, care-minute targets/actuals, and quality / care-risk indicators.
+
+The two sources are reported at different granularities and were bridged on the **Aged Care Planning Region (ACPR, 2018)**.
 
 ## Data Workflow
 
-This project was built using a Microsoft Fabric and Power BI workflow:
+This project was built end-to-end in Microsoft Fabric and Power BI, following a medallion (Bronze → Silver → Gold) pattern:
 
-1. Source files from GEN Aged Care Data were uploaded into a Microsoft Fabric Lakehouse.
-2. Power Query was used to clean and prepare the uploaded data.
-3. Cleaned tables were loaded into a Microsoft Fabric Warehouse as the staging / Silver layer.
-4. SQL was used to create the final reporting model.
-5. The final model was connected to Power BI Desktop using Direct Lake.
+1. **Bronze** – source files from both datasets were uploaded into a Microsoft Fabric Lakehouse.
+2. **Clean** – Dataflow Gen2 (Power Query) was used to clean and prepare the uploaded data.
+3. **Silver** – cleaned tables were loaded into a Microsoft Fabric Warehouse as the staging layer.
+4. **Gold** – T-SQL was used to build the final star-schema reporting model.
+5. The Gold model was connected to a Power BI semantic model using **Direct Lake**.
 6. Power BI was used to build the final dashboard and insight pages.
+
+Regional results are shown on a **choropleth map** built with the Shape map visual and a custom ACPR (2018) **TopoJSON** boundary file. ACPR is a non-standard geography that Power BI cannot geocode automatically, so the official Department of Health planning-region shapefile was converted to TopoJSON (with mapshaper) and matched to `DimRegion` on the ACPR name.
 
 ## Data Model
 
-The final reporting model uses a star schema design.
+The final reporting model uses a star schema with `DimRegion` as the central hub.
 
 It includes:
 
-- 2 dimension tables
-- 6 fact tables
-- 1 dedicated measure table
+- **2 connected dimension tables** – `DimRegion`, `DimService`
+- **1 disconnected dimension table** – `DimQM`, used with a `SWITCH` measure to drive the quality-measure profile chart
+- **6 fact tables** – `FactServiceRating`, `FactUsage`, `FactAdmission`, `FactExit`, `FactHomeCareByRegion`, and `FactAcuity` (intentionally unrelated, state grain only)
+- **1 dedicated measures table** – `_Measures`
 
 The model supports analysis across regions, provider types, care needs, service quality, staffing performance and care-risk indicators.
 
-AI-assisted development using MCP was used to accelerate the creation of the star schema and DAX measures. The final model logic, relationships and measures were reviewed and adjusted manually.
+AI-assisted development using an MCP server (Power BI Modeling MCP) was used to accelerate the creation of the star-schema relationships and DAX measures. All relationships, measures and model logic were then reviewed and adjusted manually.
 
 ## Methodology / Data Modelling Notes
 
@@ -55,6 +63,8 @@ AI-assisted development using MCP was used to accelerate the creation of the sta
 
 **Measure validation.** Distribution sanity-checks surfaced a DAX issue where `BLANK()` is treated as 0 in comparisons, which inflated "% below 3 stars" and "% meeting care-minute target" by counting unrated / no-data services. Both measures were corrected with explicit `NOT ISBLANK()` guards.
 
+**Model validation (Tabular Editor).** The model was run through Tabular Editor's Best Practice Analyzer. Object descriptions were added, the measures-table placeholder column was optimised, and the intentional design choices (the three disconnected tables `FactAcuity` / `_Measures` / `DimQM`, and the absence of a date table for a cross-sectional snapshot) were reviewed and annotated as ignored rather than auto-fixed.
+
 ## Key Findings
 
 ### Demand
@@ -63,7 +73,7 @@ South Australia has 44,143 aged-care users, with around 74% concentrated in four
 
 Care use is mainly driven by home care, which accounts for around 60% of users, followed by permanent residential care at around 37%.
 
-Demand is also deeper in metropolitan areas. Level 3–4 care need shares are highest in Metro South, Metro West and Metro East, meaning these regions carry both higher user volumes and more complex care needs.
+Demand is also deeper in metropolitan areas. Level 3–4 care-need shares are highest in Metro South, Metro West and Metro East, meaning these regions carry both higher user volumes and more complex care needs.
 
 ### Supply Quality
 
@@ -79,9 +89,9 @@ Government providers record the highest average rating, while Private for Profit
 
 Staffing levels are broadly compliant across South Australia. On average, total care minutes exceed the target by 9.5 minutes per resident per day, and 82.7% of services meet their total care-minute target.
 
-However, staffing performance differs sharply by ownership type. Government providers run the largest surplus and meet the total care-minute target in 95.7% of services, whereas Private for Profit providers have the lowest attainment at 76.6% — running closest to, and least often above, the minimum
+However, staffing performance differs sharply by ownership type. Government providers run the largest surplus and meet the total care-minute target in 95.7% of services, whereas Private for Profit providers have the lowest attainment at 76.6%, running closest to (and least often above) the minimum.
 
-At the regional level, staffing does not fully explain quality outcomes. Care-risk indicators such as falls, polypharmacy, restrictive practices and antipsychotic use provide additional insight into quality risk.
+At the regional level, staffing does not fully explain quality outcomes. Care-risk indicators add further nuance: falls (33%) and polypharmacy (33%) are the most prevalent adverse events, followed by restrictive practices (22%) and antipsychotic use (10%). These care-practice indicators describe quality risk that staffing levels alone do not capture.
 
 ### Gap Synthesis
 
@@ -89,13 +99,13 @@ The main priority gap appears where high demand overlaps with weaker service qua
 
 Metro East, Metro South, Metro West and Riverland form the key priority group. Together, these regions account for 27,525 users, or approximately 62% of all aged-care users in South Australia.
 
-Metro East, South and West represent the largest scale priorities due to their high user volumes and deeper care needs.
+Metro East, South and West represent the largest-scale priorities due to their high user volumes and deeper care needs.
 
 Riverland represents an acute regional-equity priority because it has the lowest average rating in South Australia and high demand intensity, despite having a smaller population base.
 
 ## Recommendation
 
-Prioritise Metro East, South and West for scale impact because these regions combine high aged-care user volumes, high Level 3–4 demand intensity and weaker-than-average quality outcomes.
+Prioritise Metro East, South and West for scale impact, because these regions combine high aged-care user volumes, high Level 3–4 demand intensity and weaker-than-average quality outcomes.
 
 The main improvement opportunity is to lift 3-star services toward 4-star performance, rather than focus only on extreme low-quality outliers.
 
@@ -109,20 +119,23 @@ Use ownership type as a segmentation lens: Private for Profit services warrant t
 
 - Microsoft Fabric Lakehouse
 - Microsoft Fabric Warehouse
-- Power Query
-- SQL
-- Power BI
-- Direct Lake
+- Dataflow Gen2 / Power Query
+- T-SQL
+- Power BI (Direct Lake semantic model)
 - DAX
-- Star schema modelling
-- AI-assisted modelling workflow using MCP
+- Star-schema modelling
+- AI-assisted modelling workflow using an MCP server (Power BI Modeling MCP)
+- Tabular Editor (Best Practice Analyzer)
+- mapshaper + custom TopoJSON (choropleth boundaries)
 
 ## Project Files
 
-- `data/raw/` - raw source files from GEN Aged Care Data
-- `reports/` - Power BI report file
-- `docs/images/` - dashboard screenshots
-- `README.md` - project documentation
+- `data/raw/` – raw source files (AIHW GEN and Star Ratings extracts)
+- `gold_build.sql` – T-SQL that builds the Gold star schema
+- `geo/SA_ACPR.json` – custom ACPR (2018) TopoJSON used by the choropleth
+- `reports/` – Power BI report file
+- `docs/images/` – dashboard screenshots
+- `README.md` – project documentation
 
 ## Limitations
 
