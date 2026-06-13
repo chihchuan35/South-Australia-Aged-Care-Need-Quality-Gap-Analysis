@@ -1,0 +1,167 @@
+/// Measures-only table (Direct Lake placeholder); 'dummy' is a hidden placeholder column.
+table _Measures
+	lineageTag: da020e61-a15b-4b91-aa38-76ce1e09e6f8
+	sourceLineageTag: [dbo].[_Measures]
+
+	/// Count of in-scope SA services (233).
+	measure 'Service Count' = COUNTROWS ( FactServiceRating )
+		formatString: #,0
+		displayFolder: 1_Supply
+		lineageTag: 2aaa24a6-3930-4ab5-ac6c-45ee8f5d344d
+
+	/// Average overall star rating across rated services (blanks excluded).
+	measure 'Avg Overall Rating' = AVERAGE ( FactServiceRating[overall_rating] )
+		formatString: 0.00
+		displayFolder: 1_Supply
+		lineageTag: baf2c09c-9f7a-4eb4-9df9-647f9a2cf0bb
+
+	/// Share of rated services below 3 stars (BLANK-guarded); 0% in SA. Uses the PctOfRated UDF.
+	measure '% Below 3 Stars' = PctOfRated ( FactServiceRating[overall_rating] < 3, FactServiceRating[overall_rating] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 1_Supply
+		lineageTag: fd9f6c2f-ff65-4c77-b2dc-d5c52d4dd15e
+
+	/// Share of all services with no star rating.
+	measure '% Unrated' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( FactServiceRating ), FactServiceRating[is_unrated] = 1 ),
+			    COUNTROWS ( FactServiceRating )
+			)
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 1_Supply
+		lineageTag: aed61697-31ec-47e2-ad32-762325516dcb
+
+	/// Avg (actual - target) total care minutes/resident/day; positive = above target.
+	measure 'Avg Total Care Min Gap' = AVERAGE ( FactServiceRating[total_care_min_gap] )
+		formatString: 0.0
+		displayFolder: 2_Driver
+		lineageTag: 37749e31-e3ea-4af2-b59d-5883bbf26814
+
+	/// Avg (actual - target) RN care minutes/resident/day.
+	measure 'Avg RN Care Min Gap' = AVERAGE ( FactServiceRating[rn_care_min_gap] )
+		formatString: 0.0
+		displayFolder: 2_Driver
+		lineageTag: dc8997f1-b3df-4e69-ac90-809d4210b4f9
+
+	/// Share of services meeting the total care-minute target (BLANK-guarded). Uses the PctOfRated UDF.
+	measure '% Meeting Total Care Target' = PctOfRated ( FactServiceRating[total_care_min_gap] >= 0, FactServiceRating[total_care_min_gap] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver
+		lineageTag: eec279d0-6def-4a1d-89cc-eefabf9ad68c
+
+	/// Count of SA aged-care users.
+	measure 'Total Users' = COUNTROWS ( FactUsage )
+		formatString: #,0
+		displayFolder: 3_Demand
+		lineageTag: fc6475e2-02e5-40f5-b7aa-ba605260c22f
+
+	/// Count of admissions flagged as first admission.
+	measure 'First Admissions' = CALCULATE ( COUNTROWS ( FactAdmission ), FactAdmission[first_admission] = "Yes" )
+		formatString: #,0
+		displayFolder: 3_Demand
+		lineageTag: 3b17ee0e-9e93-4d02-956c-ad70a047c5dd
+
+	/// Avg regional share of home-care recipients on Level 3-4 packages (need-depth proxy, recipient basis).
+	measure 'Avg Level 3-4 Share' =
+			CALCULATE (
+			    AVERAGE ( FactHomeCareByRegion[level34_share] ),
+			    FactHomeCareByRegion[location_basis] = "recipient"
+			)
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 3_Demand
+		lineageTag: 9a16e6e5-171b-429e-b791-50d37d30fc7a
+
+	/// Avg % with pressure injuries (lower is better).
+	measure 'Avg Pressure Injury %' = AVERAGE ( FactServiceRating[qm_pressure_injuries] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: 77d9ee3d-0fd3-475a-892c-ec5e53b4b9a8
+
+	/// Avg % subject to restrictive practices (lower is better).
+	measure 'Avg Restrictive Practices %' = AVERAGE ( FactServiceRating[qm_restrictive_practices] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: ca49a071-1339-4905-85c8-6dba03ba1272
+
+	/// Avg % with unplanned weight loss (lower is better).
+	measure 'Avg Unplanned Weight Loss %' = AVERAGE ( FactServiceRating[qm_weight_loss] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: d9428f47-b181-4b77-8ecd-508abe39af6e
+
+	/// Avg % experiencing falls (lower is better).
+	measure 'Avg Falls %' = AVERAGE ( FactServiceRating[qm_falls] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: b086649e-c357-42d4-b7b2-3e16625d0ee2
+
+	/// Avg % of falls resulting in major injury (lower is better).
+	measure 'Avg Falls w/ Major Injury %' = AVERAGE ( FactServiceRating[qm_major_injury] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: 8b1c4394-bbc3-4d9f-ad33-c95f5a7559dd
+
+	/// Avg % on polypharmacy (lower is better).
+	measure 'Avg Polypharmacy %' = AVERAGE ( FactServiceRating[qm_polypharmacy] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: 1d7a03c1-bf15-4262-ad98-dab23d60597a
+
+	/// Avg % on antipsychotics (lower is better).
+	measure 'Avg Antipsychotic %' = AVERAGE ( FactServiceRating[qm_antipsychotic] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: 9ef55bae-f039-4409-9a8e-4beacd1d419e
+
+	/// Count of separations from aged care.
+	measure 'Total Exits' = COUNTROWS ( FactExit )
+		formatString: #,0
+		displayFolder: 3_Demand
+		lineageTag: 0130adef-5493-488b-ae52-c5e2f8425539
+
+	/// Share of rated services at the 3-star floor; main actionable laggard tier. Uses the PctOfRated UDF.
+	measure '% at 3 Stars' = PctOfRated ( FactServiceRating[overall_rating] = 3, FactServiceRating[overall_rating] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 1_Supply
+		lineageTag: 173a4b81-ae33-4479-8c41-5dfb3abb14ef
+
+	/// SWITCH over DimQM returning the selected quality measure; powers the QM profile chart.
+	measure 'QM Value' =
+			SWITCH (
+			    SELECTEDVALUE ( DimQM[qm_name] ),
+			    "Falls", [Avg Falls %],
+			    "Polypharmacy", [Avg Polypharmacy %],
+			    "Restrictive practices", [Avg Restrictive Practices %],
+			    "Antipsychotic use", [Avg Antipsychotic %],
+			    "Unplanned weight loss", [Avg Unplanned Weight Loss %],
+			    "Falls w/ major injury", [Avg Falls w/ Major Injury %],
+			    "Pressure injuries", [Avg Pressure Injury %]
+			)
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: 2_Driver\QM
+		lineageTag: ce76cfc1-14e3-4e2e-834d-926fa9b1b137
+
+	column dummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		sourceProviderType: int
+		lineageTag: 5a994287-c689-41c2-8384-73e9d66ef40c
+		sourceLineageTag: dummy
+		summarizeBy: none
+		sourceColumn: dummy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":[]}
+
+	partition _Measures = entity
+		mode: directLake
+		source
+			entityName: _Measures
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

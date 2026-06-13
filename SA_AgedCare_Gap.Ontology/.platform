@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Ontology",
+    "displayName": "SA_AgedCare_Gap"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "30b991a8-71eb-a8af-47de-3c794b7f331b"
+  }
+}

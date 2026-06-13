@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "5697360d-eecd-4158-b5dc-a75716d10969",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "age_group",
+        "targetPropertyId": "6371004258737044040"
+      },
+      {
+        "sourceColumnName": "care_type",
+        "targetPropertyId": "6371004349575417201"
+      },
+      {
+        "sourceColumnName": "home_care_level",
+        "targetPropertyId": "6371004303755487408"
+      },
+      {
+        "sourceColumnName": "indigenous_status",
+        "targetPropertyId": "6371004213637917188"
+      },
+      {
+        "sourceColumnName": "preferred_language",
+        "targetPropertyId": "6371004187122901452"
+      },
+      {
+        "sourceColumnName": "region_key",
+        "targetPropertyId": "6371004372627241439"
+      },
+      {
+        "sourceColumnName": "reporting_year",
+        "targetPropertyId": "6371004166408534307"
+      },
+      {
+        "sourceColumnName": "sex",
+        "targetPropertyId": "6371004280367055948"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "FactUsage",
+      "sourceSchema": "dbo"
+    }
+  }
+}

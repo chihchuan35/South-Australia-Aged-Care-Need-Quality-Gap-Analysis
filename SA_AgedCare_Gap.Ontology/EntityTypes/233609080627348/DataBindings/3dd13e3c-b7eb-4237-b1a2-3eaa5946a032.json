@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "3dd13e3c-b7eb-4237-b1a2-3eaa5946a032",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "age_group",
+        "targetPropertyId": "6371003621346384642"
+      },
+      {
+        "sourceColumnName": "anacc_classification",
+        "targetPropertyId": "6371003709899499050"
+      },
+      {
+        "sourceColumnName": "care_type",
+        "targetPropertyId": "6371003668488558867"
+      },
+      {
+        "sourceColumnName": "indigenous_status",
+        "targetPropertyId": "6371003596971352826"
+      },
+      {
+        "sourceColumnName": "mobility_category",
+        "targetPropertyId": "6371003688623657589"
+      },
+      {
+        "sourceColumnName": "preferred_language",
+        "targetPropertyId": "6371003577067538206"
+      },
+      {
+        "sourceColumnName": "reporting_year",
+        "targetPropertyId": "6371003553013633374"
+      },
+      {
+        "sourceColumnName": "sex",
+        "targetPropertyId": "6371003647568706074"
+      },
+      {
+        "sourceColumnName": "state",
+        "targetPropertyId": "6371003530694279121"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "FactAcuity",
+      "sourceSchema": "dbo"
+    }
+  }
+}

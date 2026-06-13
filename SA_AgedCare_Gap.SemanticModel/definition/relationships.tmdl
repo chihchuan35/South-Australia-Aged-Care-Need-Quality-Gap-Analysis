@@ -1,0 +1,24 @@
+relationship FactServiceRating_DimRegion
+	fromColumn: FactServiceRating.region_key
+	toColumn: DimRegion.region_key
+
+relationship FactServiceRating_DimService
+	fromColumn: FactServiceRating.service_key
+	toColumn: DimService.service_key
+
+relationship FactUsage_DimRegion
+	fromColumn: FactUsage.region_key
+	toColumn: DimRegion.region_key
+
+relationship FactAdmission_DimRegion
+	fromColumn: FactAdmission.region_key
+	toColumn: DimRegion.region_key
+
+relationship FactExit_DimRegion
+	fromColumn: FactExit.region_key
+	toColumn: DimRegion.region_key
+
+relationship FactHomeCareByRegion_DimRegion
+	fromColumn: FactHomeCareByRegion.region_key
+	toColumn: DimRegion.region_key
+

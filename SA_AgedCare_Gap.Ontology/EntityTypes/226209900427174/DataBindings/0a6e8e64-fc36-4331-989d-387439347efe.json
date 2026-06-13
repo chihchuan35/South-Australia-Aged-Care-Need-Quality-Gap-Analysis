@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "0a6e8e64-fc36-4331-989d-387439347efe",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "age_group",
+        "targetPropertyId": "6371003776498467232"
+      },
+      {
+        "sourceColumnName": "care_type",
+        "targetPropertyId": "6371003820684474340"
+      },
+      {
+        "sourceColumnName": "discharge_reason",
+        "targetPropertyId": "6371003843579155960"
+      },
+      {
+        "sourceColumnName": "los_days",
+        "targetPropertyId": "6371003868306896876"
+      },
+      {
+        "sourceColumnName": "region_key",
+        "targetPropertyId": "6371003888890789479"
+      },
+      {
+        "sourceColumnName": "reporting_year",
+        "targetPropertyId": "6371003758360188639"
+      },
+      {
+        "sourceColumnName": "sex",
+        "targetPropertyId": "6371003798425090622"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "FactExit",
+      "sourceSchema": "dbo"
+    }
+  }
+}

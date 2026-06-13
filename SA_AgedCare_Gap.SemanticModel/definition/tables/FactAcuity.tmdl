@@ -1,0 +1,106 @@
+/// ANACC acuity at STATE grain only; intentionally unrelated (SA-wide background context).
+table FactAcuity
+	lineageTag: 999b8390-8971-461f-9684-bd6a08b97d2e
+	sourceLineageTag: [dbo].[FactAcuity]
+
+	column anacc_classification
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6948fa75-0533-41aa-a73e-3bcb3da47a34
+		sourceLineageTag: anacc_classification
+		summarizeBy: sum
+		sourceColumn: anacc_classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobility_category
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 88112ffa-a64e-4720-b17f-e0672fc0b6e1
+		sourceLineageTag: mobility_category
+		summarizeBy: none
+		sourceColumn: mobility_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column care_type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 80f98301-a04d-447f-91aa-41f0a782cd2d
+		sourceLineageTag: care_type
+		summarizeBy: none
+		sourceColumn: care_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 036d2ee7-1bff-4b82-a908-be1b63250384
+		sourceLineageTag: sex
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6b4e0fe8-1305-4ed2-b317-aa5a6ae62ed5
+		sourceLineageTag: age_group
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column indigenous_status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 80374c04-5893-4f2f-b3de-31d5a3f63af0
+		sourceLineageTag: indigenous_status
+		summarizeBy: none
+		sourceColumn: indigenous_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 41d49852-427b-4e4e-ab77-c5ab78d23908
+		sourceLineageTag: preferred_language
+		summarizeBy: none
+		sourceColumn: preferred_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: addff097-3287-44f6-83df-3d7a36dff3a7
+		sourceLineageTag: reporting_year
+		summarizeBy: sum
+		sourceColumn: reporting_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 70bc4c01-ffe3-48ca-955a-67463a4bebde
+		sourceLineageTag: state
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactAcuity = entity
+		mode: directLake
+		source
+			entityName: FactAcuity
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

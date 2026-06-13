@@ -1,0 +1,9 @@
+/// Share of non-blank FactServiceRating rows that satisfy a condition (BLANK-guarded). Reusable rated-share logic shared by the star-tier and care-minute-target measures.
+function PctOfRated =
+		( filterCondition: SCALAR EXPR, validityColumn: ANYREF EXPR ) =>
+		DIVIDE (
+		    CALCULATE ( COUNTROWS ( FactServiceRating ), filterCondition, NOT ISBLANK ( validityColumn ) ),
+		    CALCULATE ( COUNTROWS ( FactServiceRating ), NOT ISBLANK ( validityColumn ) )
+		)
+	lineageTag: df4db780-d3b4-4373-9cbf-9f8407b06ad2
+

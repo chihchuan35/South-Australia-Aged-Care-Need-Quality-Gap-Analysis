@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "fd1cf123-371d-4095-8ad7-914140123ab2",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "level1",
+        "targetPropertyId": "6371003437785565906"
+      },
+      {
+        "sourceColumnName": "level2",
+        "targetPropertyId": "6371003416746684002"
+      },
+      {
+        "sourceColumnName": "level3",
+        "targetPropertyId": "6371003395872304434"
+      },
+      {
+        "sourceColumnName": "level34_share",
+        "targetPropertyId": "6371003329551537557"
+      },
+      {
+        "sourceColumnName": "level4",
+        "targetPropertyId": "6371003373142399535"
+      },
+      {
+        "sourceColumnName": "location_basis",
+        "targetPropertyId": "6371003460067856181"
+      },
+      {
+        "sourceColumnName": "region_key",
+        "targetPropertyId": "6371003488007255754"
+      },
+      {
+        "sourceColumnName": "total",
+        "targetPropertyId": "6371003347493897690"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "FactHomeCareByRegion",
+      "sourceSchema": "dbo"
+    }
+  }
+}

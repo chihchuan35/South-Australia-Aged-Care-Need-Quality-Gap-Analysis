@@ -1,0 +1,106 @@
+/// CURF admissions with first-admission flag.
+table FactAdmission
+	lineageTag: 7fa70398-a371-4fe3-bc78-4b9a8a1158df
+	sourceLineageTag: [dbo].[FactAdmission]
+
+	column region_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f7d52de2-cde8-4084-af3e-b7f07b13caec
+		sourceLineageTag: region_key
+		summarizeBy: sum
+		sourceColumn: region_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_admission
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 47884219-4fdc-44d5-99c4-92aa24a5862c
+		sourceLineageTag: first_admission
+		summarizeBy: none
+		sourceColumn: first_admission
+
+		annotation SummarizationSetBy = Automatic
+
+	column care_type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3166008f-6c97-466f-b65f-119c078b2b42
+		sourceLineageTag: care_type
+		summarizeBy: none
+		sourceColumn: care_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_care_level
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6e7379c7-e287-400a-848c-837b0b629181
+		sourceLineageTag: home_care_level
+		summarizeBy: none
+		sourceColumn: home_care_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9ae4fd05-b925-43f0-9613-37fa8410b7fa
+		sourceLineageTag: sex
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 514cd4d7-5ed0-4b2b-944b-10a74f04a8f6
+		sourceLineageTag: age_group
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column indigenous_status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1ac5c4fc-e00a-40f4-98d4-0ec618227331
+		sourceLineageTag: indigenous_status
+		summarizeBy: none
+		sourceColumn: indigenous_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1bcd080c-20dc-4f8b-86c6-04c9c36269f3
+		sourceLineageTag: preferred_language
+		summarizeBy: none
+		sourceColumn: preferred_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 09c57bc4-0718-4be1-80c7-21c30f17c93e
+		sourceLineageTag: reporting_year
+		summarizeBy: sum
+		sourceColumn: reporting_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactAdmission = entity
+		mode: directLake
+		source
+			entityName: FactAdmission
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

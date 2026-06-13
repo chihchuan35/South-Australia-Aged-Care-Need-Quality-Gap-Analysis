@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "0f6b9f1a-4007-461a-97d7-193605ea00bd",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "age_group",
+        "targetPropertyId": "6371004000247871051"
+      },
+      {
+        "sourceColumnName": "care_type",
+        "targetPropertyId": "6371004070499299843"
+      },
+      {
+        "sourceColumnName": "first_admission",
+        "targetPropertyId": "6371004091656782776"
+      },
+      {
+        "sourceColumnName": "home_care_level",
+        "targetPropertyId": "6371004047937608219"
+      },
+      {
+        "sourceColumnName": "indigenous_status",
+        "targetPropertyId": "6371003981906513064"
+      },
+      {
+        "sourceColumnName": "preferred_language",
+        "targetPropertyId": "6371003958007870575"
+      },
+      {
+        "sourceColumnName": "region_key",
+        "targetPropertyId": "6371004115404030947"
+      },
+      {
+        "sourceColumnName": "reporting_year",
+        "targetPropertyId": "6371003935854640824"
+      },
+      {
+        "sourceColumnName": "sex",
+        "targetPropertyId": "6371004023303685186"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "FactAdmission",
+      "sourceSchema": "dbo"
+    }
+  }
+}

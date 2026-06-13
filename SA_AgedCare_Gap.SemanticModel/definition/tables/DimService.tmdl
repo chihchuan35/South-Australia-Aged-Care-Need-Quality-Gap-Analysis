@@ -1,0 +1,95 @@
+/// 233 SA residential services with provider, ownership, size, location.
+table DimService
+	lineageTag: 6a048d8d-c1cc-4bd6-92cb-8effc4c38edb
+	sourceLineageTag: [dbo].[DimService]
+
+	column service_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 3e35cb27-e4e3-4a43-a523-550c0d512fa2
+		sourceLineageTag: service_key
+		summarizeBy: sum
+		sourceColumn: service_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 372d4d67-d03c-4fee-b366-58f8a7fc60b6
+		sourceLineageTag: service_name
+		summarizeBy: none
+		sourceColumn: service_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column provider_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c9b4274b-469d-4ffe-8c61-1c0ade1065a2
+		sourceLineageTag: provider_name
+		summarizeBy: none
+		sourceColumn: provider_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_suburb
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 043dbda6-b69e-46d3-b32f-4fa99a55b8d0
+		sourceLineageTag: service_suburb
+		summarizeBy: none
+		sourceColumn: service_suburb
+
+		annotation SummarizationSetBy = Automatic
+
+	column ownership
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 381269fa-aa10-4aec-936c-6f800324c81e
+		sourceLineageTag: ownership
+		summarizeBy: none
+		sourceColumn: ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column mmm_region
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0286a796-43a4-49c1-b290-50ad82153a3c
+		sourceLineageTag: mmm_region
+		summarizeBy: none
+		sourceColumn: mmm_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column mmm_code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0e0b7e11-af42-4b68-8aa9-d49665a47d47
+		sourceLineageTag: mmm_code
+		summarizeBy: none
+		sourceColumn: mmm_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column size
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8de96820-45de-4e23-9e2e-a6b91e275083
+		sourceLineageTag: size
+		summarizeBy: none
+		sourceColumn: size
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimService = entity
+		mode: directLake
+		source
+			entityName: DimService
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2852466899048435786",
+  "name": "FactServiceRating_has_DimService",
+  "namespaceType": "Imported",
+  "source": {
+    "entityTypeId": "201471450353863"
+  },
+  "target": {
+    "entityTypeId": "192360957894362"
+  }
+}

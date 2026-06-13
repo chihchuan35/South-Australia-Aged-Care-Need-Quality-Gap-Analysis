@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2852490276633886085",
+  "name": "FactExit_has_DimRegion",
+  "namespaceType": "Imported",
+  "source": {
+    "entityTypeId": "226209900427174"
+  },
+  "target": {
+    "entityTypeId": "184301106379159"
+  }
+}

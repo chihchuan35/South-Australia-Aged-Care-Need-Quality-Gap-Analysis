@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "343d38f5-8066-4545-b90c-6559c79238a1",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "acpr_code",
+        "targetPropertyId": "6371005442812717913"
+      },
+      {
+        "sourceColumnName": "acpr_name",
+        "targetPropertyId": "2920844943392316892"
+      },
+      {
+        "sourceColumnName": "is_metro",
+        "targetPropertyId": "6371005387653029307"
+      },
+      {
+        "sourceColumnName": "region_key",
+        "targetPropertyId": "6371005505650911154"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "DimRegion",
+      "sourceSchema": "dbo"
+    }
+  }
+}

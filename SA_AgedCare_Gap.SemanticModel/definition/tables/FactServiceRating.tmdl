@@ -1,0 +1,245 @@
+/// One row per SA service: ratings, care-minute targets/actuals/gaps, care-risk indicators.
+table FactServiceRating
+	lineageTag: 43a24e88-5d18-4a5e-850c-05ec88105ba2
+	sourceLineageTag: [dbo].[FactServiceRating]
+
+	column service_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b34120c1-e4b9-4b99-9dad-2a2c6018d050
+		sourceLineageTag: service_key
+		summarizeBy: sum
+		sourceColumn: service_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2f9d5b1a-8ca9-405b-801d-15ef1d0cbf9d
+		sourceLineageTag: region_key
+		summarizeBy: sum
+		sourceColumn: region_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column overall_rating
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f96d8754-f3e9-46ec-8299-78b28206256c
+		sourceLineageTag: overall_rating
+		summarizeBy: sum
+		sourceColumn: overall_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column re_rating
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 5c2a605d-83bc-41cb-9035-eaa723f924fa
+		sourceLineageTag: re_rating
+		summarizeBy: sum
+		sourceColumn: re_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column compliance_rating
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9435c035-0385-4fee-a516-a2c15cbcf3eb
+		sourceLineageTag: compliance_rating
+		summarizeBy: sum
+		sourceColumn: compliance_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column staffing_rating
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 714750f8-90e2-4d9e-b48b-132846778513
+		sourceLineageTag: staffing_rating
+		summarizeBy: sum
+		sourceColumn: staffing_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_rating
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: fdddab54-c4d5-4bf5-bfc3-5036dbaee435
+		sourceLineageTag: qm_rating
+		summarizeBy: sum
+		sourceColumn: qm_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column rn_care_min_target
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9ef4b624-6ace-472d-9a25-ba25c22a126d
+		sourceLineageTag: rn_care_min_target
+		summarizeBy: sum
+		sourceColumn: rn_care_min_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column rn_care_min_actual
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 14fb23b0-6a33-4929-8ab8-e7d641fc1409
+		sourceLineageTag: rn_care_min_actual
+		summarizeBy: sum
+		sourceColumn: rn_care_min_actual
+
+		annotation SummarizationSetBy = Automatic
+
+	column rn_care_min_gap
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 17542d50-7924-4753-bb0d-532b9a7ee398
+		sourceLineageTag: rn_care_min_gap
+		summarizeBy: sum
+		sourceColumn: rn_care_min_gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_care_min_target
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2821d06e-2e34-4da3-b162-be262a60fe43
+		sourceLineageTag: total_care_min_target
+		summarizeBy: sum
+		sourceColumn: total_care_min_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_care_min_actual
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 894b6186-983b-47c0-a2ad-3f0a212dc82f
+		sourceLineageTag: total_care_min_actual
+		summarizeBy: sum
+		sourceColumn: total_care_min_actual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_care_min_gap
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 53c47d8b-d71a-464c-a811-6e510356b881
+		sourceLineageTag: total_care_min_gap
+		summarizeBy: sum
+		sourceColumn: total_care_min_gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_pressure_injuries
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6d098593-decb-43cb-9289-94d0e56be676
+		sourceLineageTag: qm_pressure_injuries
+		summarizeBy: sum
+		sourceColumn: qm_pressure_injuries
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_restrictive_practices
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 70b4451d-8571-4edd-b495-3b4f84c564c3
+		sourceLineageTag: qm_restrictive_practices
+		summarizeBy: sum
+		sourceColumn: qm_restrictive_practices
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_weight_loss
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 237f879a-bc50-4286-adda-cb2283981b4e
+		sourceLineageTag: qm_weight_loss
+		summarizeBy: sum
+		sourceColumn: qm_weight_loss
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_falls
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c7e97fc2-db41-4ea8-9031-0c530d6f7479
+		sourceLineageTag: qm_falls
+		summarizeBy: sum
+		sourceColumn: qm_falls
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_major_injury
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8dea4bf1-275e-40b5-80be-c2722309215f
+		sourceLineageTag: qm_major_injury
+		summarizeBy: sum
+		sourceColumn: qm_major_injury
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_polypharmacy
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 65464130-a190-4519-88fc-010d6ec1da33
+		sourceLineageTag: qm_polypharmacy
+		summarizeBy: sum
+		sourceColumn: qm_polypharmacy
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_antipsychotic
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: a2c1fcd6-ef56-4842-a4c0-afc7e0d7ecf2
+		sourceLineageTag: qm_antipsychotic
+		summarizeBy: sum
+		sourceColumn: qm_antipsychotic
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_unrated
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 19677bcd-759e-40f8-a709-68ef8597ae67
+		sourceLineageTag: is_unrated
+		summarizeBy: sum
+		sourceColumn: is_unrated
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactServiceRating = entity
+		mode: directLake
+		source
+			entityName: FactServiceRating
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

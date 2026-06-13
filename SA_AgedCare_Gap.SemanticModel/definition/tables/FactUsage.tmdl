@@ -1,0 +1,96 @@
+/// CURF aged-care users in SA (44,143); demographics are degenerate columns.
+table FactUsage
+	lineageTag: ab278b9d-22eb-4004-ae57-3bc93259e476
+	sourceLineageTag: [dbo].[FactUsage]
+
+	column region_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 55bbd459-8feb-4b47-82de-8c7ac48a0401
+		sourceLineageTag: region_key
+		summarizeBy: sum
+		sourceColumn: region_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Care type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 35fe046c-8bff-4e63-b420-50d87cfed6bc
+		sourceLineageTag: care_type
+		summarizeBy: none
+		sourceColumn: care_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_care_level
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1f584e07-1893-4575-b502-1469066b4f41
+		sourceLineageTag: home_care_level
+		summarizeBy: none
+		sourceColumn: home_care_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ba2c0f10-757d-404a-b090-643e2e83adb5
+		sourceLineageTag: sex
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age group'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: feb7a451-b1f4-4a08-9355-e3c33bcacb45
+		sourceLineageTag: age_group
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column indigenous_status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3e48d0eb-1b66-42ea-b657-443a4e5ea60a
+		sourceLineageTag: indigenous_status
+		summarizeBy: none
+		sourceColumn: indigenous_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2058c1a9-7d2b-4e31-97a1-fa7aed1b8bc0
+		sourceLineageTag: preferred_language
+		summarizeBy: none
+		sourceColumn: preferred_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: bfb0042b-6b73-437e-ac4d-fdb025d51ced
+		sourceLineageTag: reporting_year
+		summarizeBy: sum
+		sourceColumn: reporting_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactUsage = entity
+		mode: directLake
+		source
+			entityName: FactUsage
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

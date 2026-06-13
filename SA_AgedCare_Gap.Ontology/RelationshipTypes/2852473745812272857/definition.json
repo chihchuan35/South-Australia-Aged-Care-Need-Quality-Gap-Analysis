@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2852473745812272857",
+  "name": "FactUsage_has_DimRegion",
+  "namespaceType": "Imported",
+  "source": {
+    "entityTypeId": "210635835460331"
+  },
+  "target": {
+    "entityTypeId": "184301106379159"
+  }
+}

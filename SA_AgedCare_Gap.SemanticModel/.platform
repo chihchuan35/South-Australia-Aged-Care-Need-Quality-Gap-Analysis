@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SA_AgedCare_Gap"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f664ebeb-628a-bfb9-43fb-fa030e1aa7cf"
+  }
+}

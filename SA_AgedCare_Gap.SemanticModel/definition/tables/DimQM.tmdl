@@ -1,0 +1,46 @@
+/// Disconnected 7-row QM dimension; drives the [QM Value] SWITCH profile chart.
+table DimQM
+	lineageTag: 0072208d-1252-4121-abdd-c5fedb508513
+	sourceLineageTag: [dbo].[DimQM]
+
+	column qm_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b988deb1-1594-4de7-ad27-8e873795a7ab
+		sourceLineageTag: qm_key
+		summarizeBy: sum
+		sourceColumn: qm_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column qm_name
+		dataType: string
+		sourceProviderType: varchar(40)
+		lineageTag: 24d1f34a-0c62-492a-8ea8-9132c719f8b1
+		sourceLineageTag: qm_name
+		summarizeBy: none
+		sourceColumn: qm_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9fefbde5-d48e-479d-8807-f515dd03e7c9
+		sourceLineageTag: sort_order
+		summarizeBy: sum
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimQM = entity
+		mode: directLake
+		source
+			entityName: DimQM
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,67 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Dataflow 1",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "DefaultDestination": {
+      "queryId": "72e7efd5-79eb-4a73-96d4-7e98bb50cca6",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "silver_homecare_serviceloc": {
+      "queryId": "6fbc0108-fe55-4d63-b40d-255b2db34295",
+      "queryName": "silver_homecare_serviceloc"
+    },
+    "silver_curf_acuity": {
+      "queryId": "fef051db-4587-4f6d-a98f-b6bb3a385142",
+      "queryName": "silver_curf_acuity"
+    },
+    "silver_curf_admission": {
+      "queryId": "954751b1-1218-4601-8e95-40a2b37ef47c",
+      "queryName": "silver_curf_admission"
+    },
+    "silver_curf_exit": {
+      "queryId": "0f97cc57-c52e-448b-9491-7a2611955e98",
+      "queryName": "silver_curf_exit"
+    },
+    "silver_curf_people": {
+      "queryId": "6cb97546-183a-40ce-b2bc-7c4669a79ae9",
+      "queryName": "silver_curf_people"
+    },
+    "silver_curf_service": {
+      "queryId": "d03f4b2b-31ee-45a2-9fda-9af4cd60c071",
+      "queryName": "silver_curf_service"
+    },
+    "silver_homecare_recipientloc": {
+      "queryId": "84117c0c-b873-426d-bfbb-3574e494eb49",
+      "queryName": "silver_homecare_recipientloc"
+    },
+    "silver_starratings": {
+      "queryId": "d8197a94-4152-477d-a856-d8d15d0e5f45",
+      "queryName": "silver_starratings"
+    },
+    "silver_starratings_DataDestination": {
+      "queryId": "d0b71ec3-997f-4509-bcd5-98801fea391b",
+      "queryName": "silver_starratings_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"540a4479-b522-4460-b25a-e46be07dd784\",\"DatasourceId\":\"963c27a3-b9a4-4307-ab2b-c0b1737c1c2b\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"540a4479-b522-4460-b25a-e46be07dd784\",\"DatasourceId\":\"514d0f4f-010e-48ac-aec5-4e425d0147aa\"}"
+    }
+  ]
+}

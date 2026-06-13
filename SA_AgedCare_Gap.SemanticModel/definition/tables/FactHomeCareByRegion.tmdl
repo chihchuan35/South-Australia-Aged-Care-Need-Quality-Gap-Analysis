@@ -1,0 +1,101 @@
+table FactHomeCareByRegion
+	lineageTag: f8690c67-b186-45a1-9962-ce8fd973167a
+	sourceLineageTag: [dbo].[FactHomeCareByRegion]
+
+	column region_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 71bec950-1990-41ea-ba20-a4d8f017bfe2
+		sourceLineageTag: region_key
+		summarizeBy: sum
+		sourceColumn: region_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_basis
+		dataType: string
+		sourceProviderType: varchar(9)
+		lineageTag: f7a662ae-370a-4e1e-80b3-aca0ea345927
+		sourceLineageTag: location_basis
+		summarizeBy: none
+		sourceColumn: location_basis
+
+		annotation SummarizationSetBy = Automatic
+
+	column level1
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 821e493e-8ec7-49e5-8c31-ba5d9cae9e34
+		sourceLineageTag: level1
+		summarizeBy: sum
+		sourceColumn: level1
+
+		annotation SummarizationSetBy = Automatic
+
+	column level2
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f13f4131-137e-42ed-a300-0fd9929e02c0
+		sourceLineageTag: level2
+		summarizeBy: sum
+		sourceColumn: level2
+
+		annotation SummarizationSetBy = Automatic
+
+	column level3
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: dac40ca3-5371-499d-b73b-953923122102
+		sourceLineageTag: level3
+		summarizeBy: sum
+		sourceColumn: level3
+
+		annotation SummarizationSetBy = Automatic
+
+	column level4
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 33efc857-0ba4-4eb6-9800-3aa006c25f71
+		sourceLineageTag: level4
+		summarizeBy: sum
+		sourceColumn: level4
+
+		annotation SummarizationSetBy = Automatic
+
+	column total
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 4a289614-f951-480c-bdcd-e55548749f08
+		sourceLineageTag: total
+		summarizeBy: sum
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+	column level34_share
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 2ea0148e-9bd3-4221-b0b4-b367a73fe0de
+		sourceLineageTag: level34_share
+		summarizeBy: sum
+		sourceColumn: level34_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactHomeCareByRegion = entity
+		mode: directLake
+		source
+			entityName: FactHomeCareByRegion
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

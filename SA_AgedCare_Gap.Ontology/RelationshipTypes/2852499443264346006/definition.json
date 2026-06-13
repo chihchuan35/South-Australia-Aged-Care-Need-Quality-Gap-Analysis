@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2852499443264346006",
+  "name": "FactHomeCareByRegion_has_DimRegion",
+  "namespaceType": "Imported",
+  "source": {
+    "entityTypeId": "242502213524414"
+  },
+  "target": {
+    "entityTypeId": "184301106379159"
+  }
+}

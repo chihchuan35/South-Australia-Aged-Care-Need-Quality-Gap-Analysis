@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","WebModelingEdit","RemoteModeling"]
+
+annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["MODEL_SHOULD_HAVE_A_DATE_TABLE"]}
+
+annotation BestPracticeAnalyzer_ExternalRuleFiles = ["  https://raw.githubusercontent.com/microsoft/Analysis-Services/master/BestPracticeRules/BPARules.json"]
+
+annotation __TEdtr = 1
+
+ref table DimRegion
+ref table DimService
+ref table FactServiceRating
+ref table FactUsage
+ref table FactAdmission
+ref table FactExit
+ref table FactAcuity
+ref table FactHomeCareByRegion
+ref table _Measures
+ref table DimQM
+

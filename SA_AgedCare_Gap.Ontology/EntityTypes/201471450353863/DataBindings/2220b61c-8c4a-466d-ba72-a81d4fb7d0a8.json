@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "2220b61c-8c4a-466d-ba72-a81d4fb7d0a8",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "compliance_rating",
+        "targetPropertyId": "6371004824873801539"
+      },
+      {
+        "sourceColumnName": "is_unrated",
+        "targetPropertyId": "6371004465137535101"
+      },
+      {
+        "sourceColumnName": "overall_rating",
+        "targetPropertyId": "6371004877684217985"
+      },
+      {
+        "sourceColumnName": "qm_antipsychotic",
+        "targetPropertyId": "6371004487620570552"
+      },
+      {
+        "sourceColumnName": "qm_falls",
+        "targetPropertyId": "6371004558051300009"
+      },
+      {
+        "sourceColumnName": "qm_major_injury",
+        "targetPropertyId": "6371004532054980303"
+      },
+      {
+        "sourceColumnName": "qm_polypharmacy",
+        "targetPropertyId": "6371004510708345321"
+      },
+      {
+        "sourceColumnName": "qm_pressure_injuries",
+        "targetPropertyId": "6371004619144753383"
+      },
+      {
+        "sourceColumnName": "qm_rating",
+        "targetPropertyId": "6371004777970136498"
+      },
+      {
+        "sourceColumnName": "qm_restrictive_practices",
+        "targetPropertyId": "6371004599039073524"
+      },
+      {
+        "sourceColumnName": "qm_weight_loss",
+        "targetPropertyId": "6371004578862186483"
+      },
+      {
+        "sourceColumnName": "re_rating",
+        "targetPropertyId": "6371004853536360922"
+      },
+      {
+        "sourceColumnName": "region_key",
+        "targetPropertyId": "6371004901679558687"
+      },
+      {
+        "sourceColumnName": "rn_care_min_actual",
+        "targetPropertyId": "6371004734089229515"
+      },
+      {
+        "sourceColumnName": "rn_care_min_gap",
+        "targetPropertyId": "6371004711989220369"
+      },
+      {
+        "sourceColumnName": "rn_care_min_target",
+        "targetPropertyId": "6371004758476865772"
+      },
+      {
+        "sourceColumnName": "service_key",
+        "targetPropertyId": "6371004922734402627"
+      },
+      {
+        "sourceColumnName": "staffing_rating",
+        "targetPropertyId": "6371004800113382180"
+      },
+      {
+        "sourceColumnName": "total_care_min_actual",
+        "targetPropertyId": "6371004669379207038"
+      },
+      {
+        "sourceColumnName": "total_care_min_gap",
+        "targetPropertyId": "6371004644527695285"
+      },
+      {
+        "sourceColumnName": "total_care_min_target",
+        "targetPropertyId": "6371004689647684438"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "FactServiceRating",
+      "sourceSchema": "dbo"
+    }
+  }
+}

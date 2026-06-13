@@ -1,0 +1,57 @@
+/// ACPR 2018 grain geographic dimension (11 SA regions); model hub.
+table DimRegion
+	lineageTag: 24c1bbaa-d10b-4bee-b289-c9a87b08ccf7
+	sourceLineageTag: [dbo].[DimRegion]
+
+	column region_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: cba46268-6e3f-4799-9277-67b09fd0519d
+		sourceLineageTag: region_key
+		summarizeBy: sum
+		sourceColumn: region_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column acpr_code
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b69a99f5-3b2b-418e-ad95-cfc407fe225b
+		sourceLineageTag: acpr_code
+		summarizeBy: sum
+		sourceColumn: acpr_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b40b08bc-189b-42dc-a1a6-ea1ead12ca6b
+		sourceLineageTag: acpr_name
+		summarizeBy: none
+		sourceColumn: acpr_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_metro
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0ac48aa3-d85c-4347-97dd-b7753ef8e87c
+		sourceLineageTag: is_metro
+		summarizeBy: sum
+		sourceColumn: is_metro
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimRegion = entity
+		mode: directLake
+		source
+			entityName: DimRegion
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

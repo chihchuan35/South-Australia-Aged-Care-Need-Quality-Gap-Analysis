@@ -1,0 +1,87 @@
+/// CURF separations with length of stay and discharge reason.
+table FactExit
+	lineageTag: 5fddc868-3282-48df-80e5-42f05aa3035e
+	sourceLineageTag: [dbo].[FactExit]
+
+	column region_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8e5eb80b-7f35-471f-962d-560765db21f2
+		sourceLineageTag: region_key
+		summarizeBy: sum
+		sourceColumn: region_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column los_days
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b311152f-efbd-43b1-9dbd-ff8c578244ae
+		sourceLineageTag: los_days
+		summarizeBy: sum
+		sourceColumn: los_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column discharge_reason
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bdbb27cd-d656-4b95-bfde-bc90fd495223
+		sourceLineageTag: discharge_reason
+		summarizeBy: none
+		sourceColumn: discharge_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column care_type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5206454f-d3f4-40f5-9c94-88105789175d
+		sourceLineageTag: care_type
+		summarizeBy: none
+		sourceColumn: care_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 516ee053-a975-4cc9-9097-c8bb3b5d326c
+		sourceLineageTag: sex
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ae5fa997-cdba-4230-8a23-4311f28c32da
+		sourceLineageTag: age_group
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 5ecf314c-7228-440a-8e54-e236603c0603
+		sourceLineageTag: reporting_year
+		summarizeBy: sum
+		sourceColumn: reporting_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactExit = entity
+		mode: directLake
+		source
+			entityName: FactExit
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "49fc1ef2-6f8c-4bc7-96ec-049ec730e68b",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "qm_key",
+        "targetPropertyId": "6371002309275749355"
+      },
+      {
+        "sourceColumnName": "qm_name",
+        "targetPropertyId": "6371002287670571998"
+      },
+      {
+        "sourceColumnName": "sort_order",
+        "targetPropertyId": "6371002262704983183"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "0f57b850-2784-8a67-44c4-0e1f036c69be",
+      "sourceTableName": "DimQM",
+      "sourceSchema": "dbo"
+    }
+  }
+}
