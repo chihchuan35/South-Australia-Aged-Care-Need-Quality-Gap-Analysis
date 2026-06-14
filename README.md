@@ -34,7 +34,7 @@ This project was built end-to-end in Microsoft Fabric and Power BI, following a 
 5. The Gold model was connected to a Power BI semantic model using **Direct Lake**.
 6. Power BI was used to build the final dashboard and insight pages.
 
-Regional results are shown on a **choropleth map** built with the Shape map visual and a custom ACPR (2018) **TopoJSON** boundary file. ACPR is a non-standard geography that Power BI cannot geocode automatically, so the official Department of Health planning-region shapefile was converted to TopoJSON (with mapshaper) and matched to `DimRegion` on the ACPR name. The map uses sentence-mode tooltips and a per-visual calculation that shows each region's share of total users.
+Regional results are shown on **paired choropleth maps** — care users by region and average star rating by region — built with the Shape map visual and a custom ACPR (2018) **TopoJSON** boundary file. ACPR is a non-standard geography that Power BI cannot geocode automatically, so the official Department of Health planning-region shapefile was converted to TopoJSON (with mapshaper) and matched to `DimRegion` on the ACPR name. The maps use sentence-mode tooltips and a per-visual calculation that shows each region's share of total users. Side by side they make the core gap visible at a glance: demand concentrates in the metropolitan regions, while the highest ratings sit in the low-population outback.
 
 ## Data Model
 
@@ -46,7 +46,6 @@ It includes:
 - **1 disconnected dimension table** – `DimQM`, used with a `SWITCH` measure to drive the quality-measure profile chart
 - **6 fact tables** – `FactServiceRating`, `FactUsage`, `FactAdmission`, `FactExit`, `FactHomeCareByRegion`, and `FactAcuity` (intentionally unrelated, state grain only)
 - **1 dedicated measures table** – `_Measures`
-- **1 reusable DAX user-defined function** – `PctOfRated`, encapsulating the shared rated-share logic
 
 The model supports analysis across regions, provider types, care needs, service quality, staffing performance and care-risk indicators.
 
@@ -66,11 +65,9 @@ AI-assisted development using an MCP server (Power BI Modeling MCP) was used to 
 
 **Model validation (Tabular Editor).** The model was run through Tabular Editor's Best Practice Analyzer. Object descriptions were added, the measures-table placeholder column was optimised, and the intentional design choices (the three disconnected tables `FactAcuity` / `_Measures` / `DimQM`, and the absence of a date table for a cross-sectional snapshot) were reviewed and annotated as ignored rather than auto-fixed.
 
-**Reusable logic (DAX UDF).** The repeated BLANK-guarded "share of rated services" pattern (the star-tier and care-minute-target measures) is encapsulated in a single `PctOfRated` user-defined function, so the logic lives in one place and the measures reduce to one-line calls.
-
 ## Source Control
 
-The entire Fabric workspace — lakehouses, warehouse, dataflow, pipeline, and the `SA_AgedCare_Gap` semantic model — is version-controlled via Fabric Git integration (GitHub). The serialised item definitions (TMDL) live on the `GitHub-Health` branch, which makes the model diff-able (relationships, measures, and the `PctOfRated` function are plain text) and the project reproducible.
+The entire Fabric workspace — lakehouses, warehouse, dataflow, pipeline, and the `SA_AgedCare_Gap` semantic model — is version-controlled via Fabric Git integration (GitHub). The serialised item definitions (TMDL) live on the `GitHub-Health` branch, which makes the model diff-able (relationships and measures are plain text) and the project reproducible.
 
 ## Key Findings
 
@@ -134,7 +131,6 @@ Use ownership type as a segmentation lens: Private for Profit services warrant t
 - AI-assisted modelling workflow using an MCP server (Power BI Modeling MCP)
 - Tabular Editor (Best Practice Analyzer)
 - mapshaper + custom TopoJSON (choropleth boundaries)
-- DAX user-defined functions (UDF)
 - Fabric Git integration (GitHub) for source control
 
 ## Project Files
