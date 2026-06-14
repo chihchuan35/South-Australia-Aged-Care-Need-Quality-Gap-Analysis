@@ -3,11 +3,14 @@ table _Measures
 	lineageTag: da020e61-a15b-4b91-aa38-76ce1e09e6f8
 	sourceLineageTag: [dbo].[_Measures]
 
-	/// Count of in-scope SA services (233).
+	/// Count of in-scope SA aged-care services (233).
+	/// 
 	measure 'Service Count' = COUNTROWS ( FactServiceRating )
 		formatString: #,0
 		displayFolder: 1_Supply
 		lineageTag: 2aaa24a6-3930-4ab5-ac6c-45ee8f5d344d
+
+		changedProperty = Description
 
 	/// Average overall star rating across rated services (blanks excluded).
 	measure 'Avg Overall Rating' = AVERAGE ( FactServiceRating[overall_rating] )
