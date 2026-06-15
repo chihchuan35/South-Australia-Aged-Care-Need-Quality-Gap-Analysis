@@ -61,6 +61,13 @@ AI-assisted development using an MCP server (Power BI Modeling MCP) was used to 
 
 **Modelling choices.** MMM (remoteness) is treated as a service-level attribute (one ACPR spans several MMM values). Acuity (ANACC) exists only at state level, so it is used as SA-wide background context rather than a regional axis. A **disconnected `DimQM` table + a `SWITCH` measure** power the quality-measure profile chart (overcoming the multi-measure visual limitation), and `FactAcuity` is intentionally left unrelated (state grain only). The priority quadrant uses **two transparent axes (need depth × quality) rather than a composite index**, so the prioritisation logic stays fully explainable.
 
+**Priority-zone definition.** "Priority zones" are defined explicitly on the two synthesis axes, with both thresholds fixed against the SA benchmark rather than a black-box score. A region qualifies only when it is **both**:
+
+1. **High need** — Level 3–4 home-care share (`Avg Level 3-4 Share`) **≥ 70%**, a cut that falls in the natural gap between Riverland (70.7%) and the next region (57.8%); and
+2. **Below-average quality** — `Avg Overall Rating` **< the SA mean of 3.67**.
+
+Four regions satisfy both — **Metro East, Metro South, Metro West and Riverland** — together **27,525 users ≈ 62%** of SA's 44,143. The rule is deliberately discriminating: **Metro North** (rating 3.55 but need 56.4%) and **Eyre Peninsula** (rating 3.50 — the second-lowest in SA — but need only 33.6%) are _excluded_ despite below-average quality, because their need depth sits below the threshold. Priority is the **intersection** of high need and low quality, not either signal on its own.
+
 **Measure validation.** Distribution sanity-checks surfaced a DAX issue where `BLANK()` is treated as 0 in comparisons, which inflated "% below 3 stars" and "% meeting care-minute target" by counting unrated / no-data services. Both measures were corrected with explicit `NOT ISBLANK()` guards.
 
 **Model validation (Tabular Editor).** The model was run through Tabular Editor's Best Practice Analyzer. Object descriptions were added, the measures-table placeholder column was optimised, and the intentional design choices (the three disconnected tables `FactAcuity` / `_Measures` / `DimQM`, and the absence of a date table for a cross-sectional snapshot) were reviewed and annotated as ignored rather than auto-fixed.
@@ -99,9 +106,9 @@ At the regional level, staffing does not fully explain quality outcomes. Care-ri
 
 ### Gap Synthesis
 
-The main priority gap appears where high demand overlaps with weaker service quality.
+The main priority gap appears where high demand overlaps with weaker service quality. Applying the priority-zone rule — Level 3–4 need ≥ 70% **and** rating below the SA average (3.67) — returns four regions.
 
-Metro East, Metro South, Metro West and Riverland form the key priority group. Together, these regions account for 27,525 users, or approximately 62% of all aged-care users in South Australia.
+Metro East, Metro South, Metro West and Riverland form the key priority group. Together, these regions account for 27,525 users, or approximately 62% of all aged-care users in South Australia. (Metro North and Eyre Peninsula are below-average on quality but fall short on need depth, so neither is a priority zone.)
 
 Metro East, South and West represent the largest-scale priorities due to their high user volumes and deeper care needs.
 
